@@ -79,6 +79,50 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-24-03-12-blog-stm32-key" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/12/24-03-12-blog-stm32-key/" class="article-date">
+  <time class="dt-published" datetime="2024-03-12T05:00:45.000Z" itemprop="datePublished">2024-03-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/STM32/">STM32</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/03/12/24-03-12-blog-stm32-key/">24-03-12-blog-stm32-key</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="24-03-12-blog-stm32-key"><a href="#24-03-12-blog-stm32-key" class="headerlink" title="24-03-12-blog-stm32-key"></a>24-03-12-blog-stm32-key</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line">A --&gt; B</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yu-jun-jie.github.io/2024/03/12/24-03-12-blog-stm32-key/" data-id="cltnwxfz30004bkfmbgvh6y8m" data-title="24-03-12-blog-stm32-key" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/STM32/" rel="tag">STM32</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-24-03-11-blog-stm32" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/03/11/24-03-11-blog-stm32/" class="article-date">
@@ -105,7 +149,7 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="STM32"><a href="#STM32" class="headerlink" title="STM32"></a>STM32</h1><h2 id="F103-GPIO结构"><a href="#F103-GPIO结构" class="headerlink" title="F103 GPIO结构"></a>F103 GPIO结构</h2><p><img src="/2024/03/11/24-03-11-blog-stm32/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-03-11%20111613.png"></p>
+        <h1 id="STM32"><a href="#STM32" class="headerlink" title="STM32"></a>STM32</h1><h2 id="F103-GPIO结构"><a href="#F103-GPIO结构" class="headerlink" title="F103 GPIO结构"></a>F103 GPIO结构</h2><p><img src="/2024/03/11/24-03-11-blog-stm32/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-03-11%20111341.png"></p>
 <h2 id="F103-初始化"><a href="#F103-初始化" class="headerlink" title="F103 初始化"></a>F103 初始化</h2><p><img src="/2024/03/11/24-03-11-blog-stm32/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-03-11%20100352.png"></p>
 <p>初始化函数</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">MX_GPIO_Init</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  GPIO_InitTypeDef GPIO_InitStruct = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="comment">/* USER CODE BEGIN MX_GPIO_Init_1 */</span></span><br><span class="line"><span class="comment">/* USER CODE END MX_GPIO_Init_1 */</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/* GPIO Ports Clock Enable */</span></span><br><span class="line">  __HAL_RCC_GPIOC_CLK_ENABLE();</span><br><span class="line">  __HAL_RCC_GPIOD_CLK_ENABLE();</span><br><span class="line">  __HAL_RCC_GPIOB_CLK_ENABLE();</span><br><span class="line">  __HAL_RCC_GPIOA_CLK_ENABLE();</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*Configure GPIO pin Output Level */</span></span><br><span class="line">  HAL_GPIO_WritePin(ONBOARD_LED_GPIO_Port, ONBOARD_LED_Pin, GPIO_PIN_RESET);</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*Configure GPIO pin Output Level */</span></span><br><span class="line">  HAL_GPIO_WritePin(GPIOB, LED4_Pin|LED3_Pin|LED2_Pin|LED1_Pin, GPIO_PIN_RESET);</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*Configure GPIO pin : ONBOARD_LED_Pin */</span></span><br><span class="line">  GPIO_InitStruct.Pin = ONBOARD_LED_Pin;</span><br><span class="line">  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;</span><br><span class="line">  GPIO_InitStruct.Pull = GPIO_PULLDOWN;</span><br><span class="line">  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;</span><br><span class="line">  HAL_GPIO_Init(ONBOARD_LED_GPIO_Port, &amp;GPIO_InitStruct);</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*Configure GPIO pins : LED4_Pin LED3_Pin LED2_Pin LED1_Pin */</span></span><br><span class="line">  GPIO_InitStruct.Pin = LED4_Pin|LED3_Pin|LED2_Pin|LED1_Pin;</span><br><span class="line">  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;</span><br><span class="line">  GPIO_InitStruct.Pull = GPIO_PULLDOWN;</span><br><span class="line">  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;</span><br><span class="line">  HAL_GPIO_Init(GPIOB, &amp;GPIO_InitStruct);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* USER CODE BEGIN MX_GPIO_Init_2 */</span></span><br><span class="line"><span class="comment">/* USER CODE END MX_GPIO_Init_2 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -120,11 +164,18 @@
 <p>上下拉数据</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span>  GPIO_SPEED_FREQ_LOW              (GPIO_CRL_MODE0_1) <span class="comment">/*!&lt; Low speed */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span>  GPIO_SPEED_FREQ_MEDIUM           (GPIO_CRL_MODE0_0) <span class="comment">/*!&lt; Medium speed */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span>  GPIO_SPEED_FREQ_HIGH             (GPIO_CRL_MODE0)   <span class="comment">/*!&lt; High speed */</span></span></span><br></pre></td></tr></table></figure>
 
+<p>输出注意<br>在初始条件一致时输出<br>使用库函数  </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">    HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_SET);</span><br><span class="line">    HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_RESET);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出反转周期为1.29us<br><img src="/2024/03/11/24-03-11-blog-stm32/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-03-11%20214120.png"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> LED1(x) do&#123;LED1_GPIO_Port-&gt;BSRR = LED1_Pin &lt;&lt; ((x)?0:16);&#125;while(0)</span></span><br><span class="line"><span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">    LED1(<span class="number">1</span>);</span><br><span class="line">    LED1(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出反转周期为340ns<br><img src="/2024/03/11/24-03-11-blog-stm32/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-03-11%20213747.png"><br>两者运行速度相差将近3倍<br>原因库函数进行了数据的检查  </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">HAL_GPIO_WritePin</span><span class="params">(GPIO_TypeDef *GPIOx, <span class="type">uint16_t</span> GPIO_Pin, GPIO_PinState PinState)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">/* Check the parameters */</span></span><br><span class="line">  assert_param(IS_GPIO_PIN(GPIO_Pin));</span><br><span class="line">  assert_param(IS_GPIO_PIN_ACTION(PinState));</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (PinState != GPIO_PIN_RESET)</span><br><span class="line">  &#123;</span><br><span class="line">    GPIOx-&gt;BSRR = GPIO_Pin;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    GPIOx-&gt;BSRR = (<span class="type">uint32_t</span>)GPIO_Pin &lt;&lt; <span class="number">16u</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>HAL库的性能损失比交大  </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yu-jun-jie.github.io/2024/03/11/24-03-11-blog-stm32/" data-id="cltmyjmtk0000c8fm7nt2df6m" data-title="24-03-11-blog-stm32" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://yu-jun-jie.github.io/2024/03/11/24-03-11-blog-stm32/" data-id="cltnwxfyu0000bkfmb5zh4exk" data-title="24-03-11-blog-stm32" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -167,11 +218,25 @@
         <h1 id="HEXO-无法加载图片问题"><a href="#HEXO-无法加载图片问题" class="headerlink" title="HEXO 无法加载图片问题"></a>HEXO 无法加载图片问题</h1><p><img src="/2024/03/11/24-3-11-blog-hexo-ing/image.png" alt="alt text"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br></pre></td></tr></table></figure>
 
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">tags:</span><br><span class="line">- HEXO</span><br><span class="line">categories:</span><br><span class="line">- HEXO</span><br><span class="line">keywords:</span><br><span class="line">- HEXO</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>tags  </p>
+</blockquote>
+<p>标签  </p>
+<blockquote>
+<p>categories  </p>
+</blockquote>
+<p>内别  </p>
+<blockquote>
+<p>keyword  </p>
+</blockquote>
+<p>关键字  </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yu-jun-jie.github.io/2024/03/11/24-3-11-blog-hexo-ing/" data-id="cltmyjmty0006c8fmdf0if07l" data-title="24-3-11-blog-hexo-ing" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://yu-jun-jie.github.io/2024/03/11/24-3-11-blog-hexo-ing/" data-id="cltnwxfz00001bkfm84tfh8wv" data-title="24-3-11-blog-hexo-ing" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -229,7 +294,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yu-jun-jie.github.io/2024/03/11/hello-world/" data-id="cltmyjmtx0005c8fm6ty5hut0" data-title="hello-world" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://yu-jun-jie.github.io/2024/03/11/hello-world/" data-id="cltnwxfz40005bkfm66gogwcr" data-title="hello-world" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -273,7 +338,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/HEXO/" style="font-size: 20px;">HEXO</a> <a href="/tags/STM32/" style="font-size: 10px;">STM32</a>
+      <a href="/tags/HEXO/" style="font-size: 10px;">HEXO</a> <a href="/tags/STM32/" style="font-size: 10px;">STM32</a>
     </div>
   </div>
 
@@ -293,6 +358,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2024/03/12/24-03-12-blog-stm32-key/">24-03-12-blog-stm32-key</a>
+          </li>
         
           <li>
             <a href="/2024/03/11/24-03-11-blog-stm32/">24-03-11-blog-stm32</a>
