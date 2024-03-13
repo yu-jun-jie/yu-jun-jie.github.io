@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://yu-jun-jie.github.io/2024/03/11/24-03-11-blog-stm32/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-03-11%20214120.png">
 <meta property="og:image" content="https://yu-jun-jie.github.io/2024/03/11/24-03-11-blog-stm32/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-03-11%20213747.png">
 <meta property="article:published_time" content="2024-03-11T02:28:11.000Z">
-<meta property="article:modified_time" content="2024-03-12T05:30:58.080Z">
+<meta property="article:modified_time" content="2024-03-13T00:18:26.431Z">
 <meta property="article:author" content="yujunjie">
 <meta property="article:tag" content="STM32">
 <meta name="twitter:card" content="summary">
@@ -130,14 +130,14 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">    HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_SET);</span><br><span class="line">    HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_RESET);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>输出反转周期为1.29us<br><img src="/2024/03/11/24-03-11-blog-stm32/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-03-11%20214120.png"></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> LED1(x) do&#123;LED1_GPIO_Port-&gt;BSRR = LED1_Pin &lt;&lt; ((x)?0:16);&#125;while(0)</span></span><br><span class="line"><span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">    LED1(<span class="number">1</span>);</span><br><span class="line">    LED1(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出反转周期为340ns<br><img src="/2024/03/11/24-03-11-blog-stm32/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-03-11%20213747.png"><br>两者运行速度相差将近3倍<br>原因库函数进行了数据的检查  </p>
+<p>输出反转周期为340ns<br><img src="/2024/03/11/24-03-11-blog-stm32/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-03-11%20213747.png"><br>两者运行速度相差将近3倍  </p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">HAL_GPIO_WritePin</span><span class="params">(GPIO_TypeDef *GPIOx, <span class="type">uint16_t</span> GPIO_Pin, GPIO_PinState PinState)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">/* Check the parameters */</span></span><br><span class="line">  assert_param(IS_GPIO_PIN(GPIO_Pin));</span><br><span class="line">  assert_param(IS_GPIO_PIN_ACTION(PinState));</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (PinState != GPIO_PIN_RESET)</span><br><span class="line">  &#123;</span><br><span class="line">    GPIOx-&gt;BSRR = GPIO_Pin;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    GPIOx-&gt;BSRR = (<span class="type">uint32_t</span>)GPIO_Pin &lt;&lt; <span class="number">16u</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>HAL库的性能损失比交大  </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yu-jun-jie.github.io/2024/03/11/24-03-11-blog-stm32/" data-id="clto99h9u00004ofm0yxa883z" data-title="24-03-11-blog-stm32" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://yu-jun-jie.github.io/2024/03/11/24-03-11-blog-stm32/" data-id="cltp2000b00000cfm4f0b12t6" data-title="24-03-11-blog-stm32" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
