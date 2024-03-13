@@ -79,6 +79,58 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-24-03-13-blog-stm32" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/13/24-03-13-blog-stm32/" class="article-date">
+  <time class="dt-published" datetime="2024-03-13T00:41:54.000Z" itemprop="datePublished">2024-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/STM32/">STM32</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/03/13/24-03-13-blog-stm32/">24-03-13-blog-stm32</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="24-03-13-blog-stm32"><a href="#24-03-13-blog-stm32" class="headerlink" title="24-03-13-blog-stm32"></a>24-03-13-blog-stm32</h1><p>模式参数  </p>
+<p><img src="/2024/03/13/24-03-13-blog-stm32/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-03-13%20090945.png"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">MX_GPIO_Init</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    GPIO_InitTypeDef GPIO_InitStruct = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    __HAL_RCC_GPIOA_CLK_ENABLE();</span><br><span class="line">    GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3</span><br><span class="line">                          |GPIO_PIN_4;</span><br><span class="line">    GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;</span><br><span class="line">    GPIO_InitStruct.Pull = GPIO_PULLUP;</span><br><span class="line">    HAL_GPIO_Init(GPIOA, &amp;GPIO_InitStruct);</span><br><span class="line">    <span class="comment">/*设置优先级*/</span></span><br><span class="line">    HAL_NVIC_SetPriority(EXTI0_IRQn, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    HAL_NVIC_EnableIRQ(EXTI0_IRQn);</span><br><span class="line">    HAL_NVIC_SetPriority(EXTI1_IRQn, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    HAL_NVIC_EnableIRQ(EXTI1_IRQn);</span><br><span class="line">    HAL_NVIC_SetPriority(EXTI2_IRQn, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    HAL_NVIC_EnableIRQ(EXTI2_IRQn);</span><br><span class="line">    HAL_NVIC_SetPriority(EXTI3_IRQn, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    HAL_NVIC_EnableIRQ(EXTI3_IRQn);</span><br><span class="line">    HAL_NVIC_SetPriority(EXTI4_IRQn, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    HAL_NVIC_EnableIRQ(EXTI4_IRQn);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输入中断设置模式</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span>  GPIO_MODE_IT_RISING                    0x10110000u   <span class="comment">/*!&lt; External Interrupt Mode with Rising edge trigger detection          */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span>  GPIO_MODE_IT_FALLING                   0x10210000u   <span class="comment">/*!&lt; External Interrupt Mode with Falling edge trigger detection         */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span>  GPIO_MODE_IT_RISING_FALLING            0x10310000u   <span class="comment">/*!&lt; External Interrupt Mode with Rising/Falling edge trigger detection  */</span></span></span><br></pre></td></tr></table></figure>
+
+<p>使用示列</p>
+<p><img src="/2024/03/13/24-03-13-blog-stm32/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-03-13%20093531.png"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">HAL_GPIO_EXTI_Callback</span><span class="params">(<span class="type">uint16_t</span> GPIO_Pin)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">/*消抖处理*/</span></span><br><span class="line">    <span class="type">static</span> <span class="type">uint32_t</span> extitick;</span><br><span class="line">    <span class="keyword">if</span>(extitick &lt; HAL_GetTick())</span><br><span class="line">    &#123;</span><br><span class="line">        extitick = HAL_GetTick()+<span class="number">100</span>;</span><br><span class="line">        <span class="comment">/*具体使用*/</span></span><br><span class="line">        uart1printf(<span class="string">&quot;%d\n&quot;</span>,GPIO_Pin);</span><br><span class="line">        <span class="keyword">if</span>(GPIO_Pin == GPIO_PIN_0)</span><br><span class="line">        &#123;</span><br><span class="line">            uart1printf(<span class="string">&quot;KEY0\n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(GPIO_Pin == GPIO_PIN_1)</span><br><span class="line">        &#123;</span><br><span class="line">            uart1printf(<span class="string">&quot;KEY1\n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(GPIO_Pin == GPIO_PIN_2)</span><br><span class="line">        &#123;</span><br><span class="line">            uart1printf(<span class="string">&quot;KEY2\n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(GPIO_Pin == GPIO_PIN_3)</span><br><span class="line">        &#123;</span><br><span class="line">            uart1printf(<span class="string">&quot;KEY3\n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(GPIO_Pin == GPIO_PIN_4)</span><br><span class="line">        &#123;</span><br><span class="line">            uart1printf(<span class="string">&quot;KEY4\n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yu-jun-jie.github.io/2024/03/13/24-03-13-blog-stm32/" data-id="cltprzcc30009ngfm3toj02r6" data-title="24-03-13-blog-stm32" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/STM32/" rel="tag">STM32</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-24-03-12-blog-stm32-key" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/03/12/24-03-12-blog-stm32-key/" class="article-date">
@@ -112,11 +164,25 @@
 <p>sprintf(str,””);<br>HAL_UART_Transmit(&amp;huart1, (uint8_t*)str, strlen(str), 100);  </p>
 </blockquote>
 <p>融和  </p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;stdio.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;string.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;stdarg.h&quot;</span></span></span><br><span class="line"><span class="type">void</span> <span class="title function_">uart1printf</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *format, ...)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> str[<span class="number">256</span>];</span><br><span class="line">    va_list args; <span class="comment">/*创建变量*/</span></span><br><span class="line">    va_start(args, format);</span><br><span class="line">    vsnprintf(str, <span class="keyword">sizeof</span>(str), format, args); <span class="comment">/*变量转换*/</span></span><br><span class="line">    va_end(args); <span class="comment">/*释放变量*/</span></span><br><span class="line">    HAL_UART_Transmit(&amp;huart1, (<span class="type">uint8_t</span>*)str, <span class="built_in">strlen</span>(str), <span class="number">100</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="C">#include &quot;stdio.h&quot;
+#include &quot;string.h&quot;
+#include &quot;stdarg.h&quot;
+void uart1printf(const char *format, ...)
+&#123;
+    char str[256];
+    va_list args; /*创建变量*/
+    va_start(args, format);
+    vsnprintf(str, sizeof(str), format, args); /*变量转换*/
+    va_end(args); /*释放变量*/
+    HAL_UART_Transmit(&amp;huart1, (uint8_t*)str, strlen(str), 100);
+&#125;
+```z
+</code></pre>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yu-jun-jie.github.io/2024/03/12/24-03-12-blog-stm32-key/" data-id="cltp2000f00010cfm729i7l4w" data-title="24-03-12-blog-stm32-key" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://yu-jun-jie.github.io/2024/03/12/24-03-12-blog-stm32-key/" data-id="cltprzcc20006ngfm8rbyhbax" data-title="24-03-12-blog-stm32-key" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -182,7 +248,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yu-jun-jie.github.io/2024/03/11/24-03-11-blog-stm32/" data-id="cltp2000b00000cfm4f0b12t6" data-title="24-03-11-blog-stm32" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://yu-jun-jie.github.io/2024/03/11/24-03-11-blog-stm32/" data-id="cltprzcbp0000ngfma7001eq6" data-title="24-03-11-blog-stm32" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -243,7 +309,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yu-jun-jie.github.io/2024/03/11/24-3-11-blog-hexo-ing/" data-id="cltp2000h00040cfmca552002" data-title="24-3-11-blog-hexo-ing" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://yu-jun-jie.github.io/2024/03/11/24-3-11-blog-hexo-ing/" data-id="cltprzcc10005ngfm6qmzejxs" data-title="24-3-11-blog-hexo-ing" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -300,7 +366,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yu-jun-jie.github.io/2024/03/11/hello-world/" data-id="cltp2000i00050cfm0ph03x8e" data-title="hello-world" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://yu-jun-jie.github.io/2024/03/11/hello-world/" data-id="cltprzcc4000bngfmc4dk61ae" data-title="hello-world" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -344,7 +410,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/HEXO/" style="font-size: 10px;">HEXO</a> <a href="/tags/STM32/" style="font-size: 10px;">STM32</a>
+      <a href="/tags/HEXO/" style="font-size: 10px;">HEXO</a> <a href="/tags/STM32/" style="font-size: 20px;">STM32</a>
     </div>
   </div>
 
@@ -364,6 +430,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2024/03/13/24-03-13-blog-stm32/">24-03-13-blog-stm32</a>
+          </li>
         
           <li>
             <a href="/2024/03/12/24-03-12-blog-stm32-key/">24-03-12-blog-stm32-key</a>
