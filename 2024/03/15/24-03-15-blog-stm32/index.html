@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>24-03-15-blog-stm32 | 余俊杰 HEXO</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="24-03-15-BLOG-STM32模拟IIC操作在电路未使用硬件IIC引脚时可以使用软件模拟IIC 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787">
+<meta property="og:type" content="article">
+<meta property="og:title" content="24-03-15-blog-stm32">
+<meta property="og:url" content="https://yu-jun-jie.github.io/2024/03/15/24-03-15-blog-stm32/index.html">
+<meta property="og:site_name" content="余俊杰 HEXO">
+<meta property="og:description" content="24-03-15-BLOG-STM32模拟IIC操作在电路未使用硬件IIC引脚时可以使用软件模拟IIC 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yu-jun-jie.github.io/2024/03/15/24-03-15-blog-stm32/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-03-15%20202025.png">
+<meta property="og:image" content="https://yu-jun-jie.github.io/2024/03/15/24-03-15-blog-stm32/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-03-15%20202232.png">
+<meta property="og:image" content="https://yu-jun-jie.github.io/2024/03/15/24-03-15-blog-stm32/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-03-15%20144013.png">
+<meta property="og:image" content="https://yu-jun-jie.github.io/2024/03/15/24-03-15-blog-stm32/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-03-15%20144031.png">
+<meta property="article:published_time" content="2024-03-15T12:16:46.000Z">
+<meta property="article:modified_time" content="2024-03-15T13:35:59.567Z">
+<meta property="article:author" content="yujunjie">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yu-jun-jie.github.io/2024/03/15/24-03-15-blog-stm32/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-03-15%20202025.png">
+  
+    <link rel="alternate" href="/atom.xml" title="余俊杰 HEXO" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">余俊杰 HEXO</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Blog</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://yu-jun-jie.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-24-03-15-blog-stm32" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/15/24-03-15-blog-stm32/" class="article-date">
+  <time class="dt-published" datetime="2024-03-15T12:16:46.000Z" itemprop="datePublished">2024-03-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      24-03-15-blog-stm32
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="24-03-15-BLOG-STM32"><a href="#24-03-15-BLOG-STM32" class="headerlink" title="24-03-15-BLOG-STM32"></a>24-03-15-BLOG-STM32</h1><h2 id="模拟IIC操作"><a href="#模拟IIC操作" class="headerlink" title="模拟IIC操作"></a>模拟IIC操作</h2><p>在电路未使用硬件IIC引脚时可以使用软件模拟IIC</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> DSADDRESS 0X68</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DSDELAY() do&#123;&#125;while(0)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SCLWRITE(X) do&#123;SCL_GPIO_Port-&gt;BSRR = SCL_Pin &lt;&lt; ((X)?0:16);DSDELAY();&#125;while(0)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SDAWRITE(X) do&#123;SDA_GPIO_Port-&gt;BSRR = SDA_Pin &lt;&lt; ((X)?0:16);DSDELAY();&#125;while(0)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DSIICINP() do&#123;SDA_GPIO_Port-&gt;MODER &amp;= ~(0x00000003 &lt;&lt; (3*2));&#125;while(0) <span class="comment">/*输入*/</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DSIICOUT() do&#123;SDA_GPIO_Port-&gt;MODER |= (0x00000001 &lt;&lt; (3*2));&#125;while(0) <span class="comment">/*输出*/</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">dsiicstart</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">//	SCLWRITE(1);</span></span><br><span class="line">	SDAWRITE(<span class="number">1</span>);</span><br><span class="line">	SDAWRITE(<span class="number">0</span>);</span><br><span class="line">	SCLWRITE(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">dsiicstop</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">//	SCLWRITE(0);</span></span><br><span class="line">	SDAWRITE(<span class="number">0</span>);</span><br><span class="line">	SCLWRITE(<span class="number">1</span>);</span><br><span class="line">	SDAWRITE(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">dsiicwrite8bit</span><span class="params">(<span class="type">uint8_t</span> data)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">uint8_t</span> i=<span class="number">0</span>;i&lt;<span class="number">8</span>;++i)</span><br><span class="line">	&#123;</span><br><span class="line">		SDAWRITE(data &amp; (<span class="number">0x80</span> &gt;&gt; i));</span><br><span class="line">		SCLWRITE(<span class="number">1</span>);</span><br><span class="line">		SCLWRITE(<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">uint8_t</span> <span class="title function_">dsiicreadack</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	DSIICINP();</span><br><span class="line">	SCLWRITE(<span class="number">1</span>);</span><br><span class="line">	SCLWRITE(<span class="number">0</span>);</span><br><span class="line">	DSIICOUT();</span><br><span class="line">	<span class="keyword">if</span>(HAL_GPIO_ReadPin(SDA_GPIO_Port, SDA_Pin))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">dsiicread8bit</span><span class="params">(<span class="type">uint8_t</span> *pdata)</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">	DSIICINP();</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">uint8_t</span> i=<span class="number">0</span>;i&lt;<span class="number">8</span>;++i)</span><br><span class="line">	&#123;</span><br><span class="line">		*pdata &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(HAL_GPIO_ReadPin(SDA_GPIO_Port, SDA_Pin))</span><br><span class="line">		&#123;</span><br><span class="line">			*pdata |= <span class="number">0x01</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		SCLWRITE(<span class="number">1</span>);</span><br><span class="line">		SCLWRITE(<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	DSIICOUT();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">da3231write</span><span class="params">(<span class="type">uint8_t</span> addres,<span class="type">uint8_t</span> data)</span></span><br><span class="line">&#123;</span><br><span class="line">	dsiicstart();</span><br><span class="line">	dsiicwrite8bit(DSADDRESS &lt;&lt; <span class="number">1</span>);</span><br><span class="line">	dsiicreadack();</span><br><span class="line">	dsiicwrite8bit(addres);</span><br><span class="line">	dsiicreadack();</span><br><span class="line">	dsiicwrite8bit(data);</span><br><span class="line">	dsiicreadack();</span><br><span class="line">	dsiicstop();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">ds3231read</span><span class="params">(<span class="type">uint8_t</span> addres,<span class="type">uint8_t</span> *pdata)</span></span><br><span class="line">&#123;</span><br><span class="line">	dsiicstart();</span><br><span class="line">	dsiicwrite8bit(DSADDRESS &lt;&lt; <span class="number">1</span>);</span><br><span class="line">	dsiicreadack();</span><br><span class="line">	dsiicwrite8bit(addres);</span><br><span class="line">	dsiicreadack();</span><br><span class="line">	dsiicstop();</span><br><span class="line">	dsiicstart();</span><br><span class="line">	dsiicwrite8bit((DSADDRESS &lt;&lt; <span class="number">1</span>) | <span class="number">0x01</span>);</span><br><span class="line">	dsiicreadack();</span><br><span class="line">	dsiicread8bit(pdata);</span><br><span class="line">	dsiicreadack();</span><br><span class="line">	dsiicstop();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">uint8_t</span> <span class="title function_">hextobcd</span><span class="params">(<span class="type">uint8_t</span> data)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> (data / <span class="number">10</span>) &lt;&lt; <span class="number">4</span> | (data % <span class="number">10</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">uint8_t</span> <span class="title function_">bcdtohex</span><span class="params">(<span class="type">uint8_t</span> data)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> (data &gt;&gt; <span class="number">4</span>) * <span class="number">10</span> + (data &amp; <span class="number">0x0F</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">dsinit</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	DSIICOUT();</span><br><span class="line">	<span class="type">uint8_t</span> data;</span><br><span class="line">	da3231write(<span class="number">0x00</span>,<span class="number">0x01</span>);</span><br><span class="line">	ds3231read(<span class="number">0x00</span>,&amp;data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在该操作中  </p>
+<p><img src="/2024/03/15/24-03-15-blog-stm32/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-03-15%20202025.png"></p>
+<p>速度极快<br>IO输入输出修改操作使用的是寄存器操作</p>
+<p><img src="/2024/03/15/24-03-15-blog-stm32/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-03-15%20202232.png"></p>
+<p>进行修改MODER寄存器进行输入输出修改操作</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> DSIICINP() do&#123;SDA_GPIO_Port-&gt;MODER &amp;= ~(0x00000003 &lt;&lt; (3*2));&#125;while(0) <span class="comment">/*输入*/</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DSIICOUT() do&#123;SDA_GPIO_Port-&gt;MODER |= (0x00000001 &lt;&lt; (3*2));&#125;while(0) <span class="comment">/*输出*/</span></span></span><br></pre></td></tr></table></figure>
+<p>注意<br>L052的输出端口</p>
+<p><img src="/2024/03/15/24-03-15-blog-stm32/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-03-15%20144013.png"></p>
+<p>与F103的输出有差别</p>
+<p><img src="/2024/03/15/24-03-15-blog-stm32/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-03-15%20144031.png"></p>
+<p>L052输出时应考虑上下拉电阻</p>
+<h2 id="数据转换"><a href="#数据转换" class="headerlink" title="数据转换"></a>数据转换</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="type">uint8_t</span> <span class="title function_">hextobcd</span><span class="params">(<span class="type">uint8_t</span> data)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> (data / <span class="number">10</span>) &lt;&lt; <span class="number">4</span> | (data % <span class="number">10</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">uint8_t</span> <span class="title function_">bcdtohex</span><span class="params">(<span class="type">uint8_t</span> data)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> (data &gt;&gt; <span class="number">4</span>) * <span class="number">10</span> + (data &amp; <span class="number">0x0F</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>HEXTOBCD 原理:<br>设数据为DEC:42<br>BIN:  </p>
+<blockquote>
+<p>0010 1010<br>42 &#x2F; 10 &#x3D; 4<br>4 &lt;&lt; 4 &#x3D; 0100 0000<br>42 % 10 &#x3D; 0000 0010<br>0100 0000 | 0000 0010 &#x3D; 0100 0010  </p>
+</blockquote>
+<p>BCDTOHEX 原理:<br>设数据为BCD:42  </p>
+<blockquote>
+<p>0100 0010<br>0100 0010 &gt;&gt; 4 &#x3D; 4<br>4 * 10 &#x3D; 40<br>0100 0010 &amp; 0x0F&#x3D; 2<br>40 + 2 &#x3D; 42  </p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yu-jun-jie.github.io/2024/03/15/24-03-15-blog-stm32/" data-id="cltspauns000520fm7kv7bhe1" data-title="24-03-15-blog-stm32" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/03/13/24-03-13-blog-stm32/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">24-03-13-blog-stm32</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/HEXO/">HEXO</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/STM32/">STM32</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO/" rel="tag">HEXO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/STM32/" rel="tag">STM32</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/HEXO/" style="font-size: 10px;">HEXO</a> <a href="/tags/STM32/" style="font-size: 20px;">STM32</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/03/15/24-03-15-blog-stm32/">24-03-15-blog-stm32</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/13/24-03-13-blog-stm32/">24-03-13-blog-stm32</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/12/24-03-12-blog-stm32-key/">24-03-12-blog-stm32-key</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/11/24-03-11-blog-stm32/">24-03-11-blog-stm32</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/11/24-3-11-blog-hexo-ing/">24-3-11-blog-hexo-ing</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 yujunjie<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
