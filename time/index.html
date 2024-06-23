@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>Real-time time</title>
+    <script>
+        function updateTime() {
+            var date = new Date();  //创建一个时间日期
+            var d1 = date.toLocaleString();
+            document.getElementById("timedisplay").innerHTML =d1; 
+        }
+        setInterval(updateTime, 1000);
+    </script>
+</head>
+<body>
+    <h1>Real-time time</h1>
+    <div id="timedisplay"></div>
+</body>
+</html>

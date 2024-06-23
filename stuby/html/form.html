@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>表格增删改</title>
+    <style>
+        h1{
+            text-align: center;
+        }
+        table{
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th,td{
+            border: 1px solid gainsboro;
+            text-align: center;
+            padding: 8px;
+        }
+        button{
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>表格增删改</h1>
+    <button onclick="AddRow()">新增数据</button>
+    <table id="table">
+        <tr>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>
+                <button type="button" onclick="enditRow(this)">编辑</button><button type="button" onclick="deleteRow(this)">删除</button>
+            </td>
+        </tr>
+    </table>
+    <script src="../js/form.js"></script>
+</body>
+</html>
