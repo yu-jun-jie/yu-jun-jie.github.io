@@ -1,0 +1,8 @@
+"A - 1"
+"A - B - 1"
+"A \p A"
+"A \p B"
+"A and B"
+"A or B"
+"A xor B"
+"Selection Color"

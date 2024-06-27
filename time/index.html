@@ -6,14 +6,14 @@
     <script>
         function updateTime() {
             var date = new Date();  //创建一个时间日期
-            var d1 = date.toLocaleString();
-            document.getElementById("timedisplay").innerHTML =d1; 
+            document.getElementById("timedisplay").innerHTML = date/1000; 
         }
         setInterval(updateTime, 1000);
     </script>
 </head>
 <body>
     <h1>Real-time time</h1>
+    <p>Unix:</p>
     <div id="timedisplay"></div>
 </body>
 </html>
