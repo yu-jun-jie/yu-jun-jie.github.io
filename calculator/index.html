@@ -2,69 +2,58 @@
 <html lang="zh">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>YUJUNJIE/CALCULATOR</title>
-        <style>
-            table{
-                /* border-collapse: collapse; */
-                text-align: center;
-                width: 100%;
-            }
-            td {
-                border-style: solid;
-            }
-            #outshow{
-                text-align: right;
-            }
-        </style>
+        <link rel="stylesheet" href="./style.css">
+        <script src="./calculator.js"></script>
     </head>
     <body>
         <h1 style="text-align: center;">CALCULATOR</h1>
-        <p id="outshow">0</p>
-        <div>
+        <input type="text" id="display" >
+        <div class="calculator-buttons">
             <table>
                 <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
+                    <td><button onclick="appendToDisplay(this.textContent)">(</button></td>
+                    <td><button onclick="appendToDisplay(this.textContent)">)</button></td>
+                    <td><button onclick="deleteLastInput()"> </button></td>
+                    <td><button onclick="appendToDisplay(this.textContent)">/</button></td>
                 </tr>
                 <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
+                    <td><button onclick="appendToDisplay(this.textContent)">7</button></td>
+                    <td><button onclick="appendToDisplay(this.textContent)">8</button></td>
+                    <td><button onclick="appendToDisplay(this.textContent)">9</button></td>
+                    <td><button onclick="appendToDisplay(this.textContent)">*</button></td>
+
                 </tr>
                 <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
+                    <td><button onclick="appendToDisplay(this.textContent)">4</button></td>
+                    <td><button onclick="appendToDisplay(this.textContent)">5</button></td>
+                    <td><button onclick="appendToDisplay(this.textContent)">6</button></td>
+                    <td><button onclick="appendToDisplay(this.textContent)">-</button></td>
                 </tr>
                 <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
+                    <td><button onclick="appendToDisplay(this.textContent)">1</button></td>
+                    <td><button onclick="appendToDisplay(this.textContent)">2</button></td>
+                    <td><button onclick="appendToDisplay(this.textContent)">3</button></td>
+                    <td><button onclick="appendToDisplay(this.textContent)">+</button></td>
                 </tr>
                 <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
+                    <td><button onclick="clearDisplay()">c</button></td>
+                    <td><button onclick="appendToDisplay(this.textContent)">0</button></td>
+                    <td><button onclick="appendToDisplay(this.textContent)">.</button></td>
+                    <td><button onclick="calculateResult()">=</button></td>
                 </tr>
             </table>
         </div>
-    </body>
+        <table id="logTable">
+            <thead>
+                <tr>
+                    <th>时间</th>
+                    <th>结果</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Log entries will be added here -->
+            </tbody>
+        </table>
 </html>

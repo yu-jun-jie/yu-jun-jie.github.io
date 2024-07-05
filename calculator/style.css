@@ -1,0 +1,44 @@
+
+body{
+    /* 容器大小 固定*/
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+table{
+    /* 设置对齐 居中 */
+    text-align: center;
+    border-collapse: collapse;
+    width: 100%;
+    height: 50vh;
+    /* height: 100%; */
+}
+th{
+       /* 边框属性 */
+       border-style: solid; 
+}
+td {
+    /* 边框属性 */
+    border-style: solid;
+}
+button {
+    /* 占据100% */
+    width: 100%;
+    height: 100%;
+    font-size: 500%;
+}
+#display{
+    /* 放大400% */
+    font-size: 400%;
+    /* 设置对齐 右对齐 */
+    text-align: right; 
+    /* 宽度100% */
+    width: 100%;
+    height: 500%;
+}
+
+#logTable{
+    text-align: center;
+    border-collapse: collapse;
+    width: 100%;
+    height: 100%;
+}

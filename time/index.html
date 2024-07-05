@@ -6,7 +6,7 @@
     <script>
         function updateTime() {
             var date = new Date();  //创建一个时间日期
-            var d1 = date.toLocaleString();
+            var d1 = date.toLocaleString('default', { hour12: false });
             document.getElementById("timedisplay").innerHTML =d1; 
         }
         setInterval(updateTime, 1000);
