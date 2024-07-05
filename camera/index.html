@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>相机</title>
+    <style>
+        video {
+            width: 100%;
+            max-width: 600px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>相机</h1>
+    <video id="camera-stream" autoplay playsinline></video>
+    <select id="camera-select"></select>
+    <button id="start-camera">打开相机</button>
+    <button id="stop-camera" disabled>关闭相机</button>
+
+    <script>
+        const videoElement = document.getElementById('camera-stream');
+        const startCameraButton = document.getElementById('start-camera');
+        const stopCameraButton = document.getElementById('stop-camera');
+        const cameraSelect = document.getElementById('camera-select');
+
+        let currentStream = null;
+
+        async function getCameraOptions() {
+            try {
+                const devices = await navigator.mediaDevices.enumerateDevices();
+                const videoDevices = devices.filter(device => device.kind === 'videoinput');
+                cameraSelect.innerHTML = '';
+                videoDevices.forEach(device => {
+                    const option = document.createElement('option');
+                    option.value = device.deviceId;
+                    option.text = device.label || `Camera ${cameraSelect.length + 1}`;
+                    cameraSelect.appendChild(option);
+                });
+            } catch (error) {
+                console.error('无法枚举设备:', error);
+            }
+        }
+
+        startCameraButton.addEventListener('click', async () => {
+            const deviceId = cameraSelect.value;
+            const constraints = {
+                video: { deviceId: deviceId ? { exact: deviceId } : undefined }
+            };
+            try {
+                currentStream = await navigator.mediaDevices.getUserMedia(constraints);
+                videoElement.srcObject = currentStream;
+                startCameraButton.disabled = true;
+                stopCameraButton.disabled = false;
+            } catch (error) {
+                console.error('无法访问相机:', error);
+            }
+        });
+
+        stopCameraButton.addEventListener('click', () => {
+            if (currentStream) {
+                const tracks = currentStream.getTracks();
+                tracks.forEach(track => track.stop());
+                videoElement.srcObject = null;
+                startCameraButton.disabled = false;
+                stopCameraButton.disabled = true;
+            }
+        });
+
+        // 初始化相机选项
+        getCameraOptions();
+
+        // 检查浏览器是否支持 getUserMedia
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+            console.error('浏览器不支持 getUserMedia API');
+            startCameraButton.disabled = true;
+        }
+    </script>
+</body>
+</html>

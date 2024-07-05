@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>串口助手</title>
+</head>
+<body>
+    <h1>串口助手</h1>
+    <button id="connectButton">连接串口</button>
+    <label for="baudRateSelect">波特率:</label>
+    <select id="baudRateSelect">
+        <option value="9600">9600</option>
+        <option value="115200">115200</option>
+        <option value="custom">自定义</option>
+    </select>
+    <input type="number" id="customBaudRate" placeholder="输入自定义波特率" style="display: none;">
+    <br>
+    <input type="text" id="input" autocomplete="off" placeholder="输入要发送的数据">
+    <button id="sendButton">发送</button>
+    <br>
+    <textarea id="output" rows="10" cols="50" readonly></textarea>
+    <script>
+        const connectButton = document.getElementById('connectButton');
+        const sendButton = document.getElementById('sendButton');
+        const output = document.getElementById('output');
+        const input = document.getElementById('input');
+        const baudRateSelect = document.getElementById('baudRateSelect');
+        const customBaudRate = document.getElementById('customBaudRate');
+
+        let serialPort = null;
+        let writer = null;
+        let reader = null;
+
+        baudRateSelect.addEventListener('change', () => {
+            if (baudRateSelect.value === 'custom') {
+                customBaudRate.style.display = 'inline';
+            } else {
+                customBaudRate.style.display = 'none';
+            }
+        });
+
+        connectButton.addEventListener('click', async () => {
+            let baudRate = parseInt(baudRateSelect.value);
+            if (isNaN(baudRate)) {
+                baudRate = parseInt(customBaudRate.value);
+            }
+
+            if (isNaN(baudRate)) {
+                output.value += '请选择或输入有效的波特率\n';
+                return;
+            }
+
+            try {
+                serialPort = await navigator.serial.requestPort();
+                await serialPort.open({ baudRate: baudRate });
+
+                reader = serialPort.readable.getReader();
+                writer = serialPort.writable.getWriter();
+
+                output.value += `串口已连接，波特率: ${baudRate}\n`;
+
+                while (true) {
+                    const { value, done } = await reader.read();
+                    if (done) {
+                        reader.releaseLock();
+                        break;
+                    }
+                    output.value += new TextDecoder().decode(value);
+                }
+            } catch (error) {
+                output.value += `连接失败: ${error}\n`;
+            }
+        });
+
+        sendButton.addEventListener('click', async () => {
+            try {
+                const data = input.value;
+                const encoded = new TextEncoder().encode(data + '\n');
+                await writer.write(encoded);
+                output.value += `发送: ${data}\n`;
+            } catch (error) {
+                output.value += `发送失败: ${error}\n`;
+            }
+        });
+    </script>
+</body>
+</html>
