@@ -1,7 +1,7 @@
 
 body{
     /* 容器大小 固定*/
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
     overflow-x: hidden;
 }
 table{
